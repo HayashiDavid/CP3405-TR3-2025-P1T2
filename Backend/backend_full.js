@@ -3,7 +3,7 @@
 // Sequelize + MySQL
 // ==============================
 
-// 1️⃣ Database Configuration
+//  Database Configuration
 const { Sequelize, DataTypes } = require("sequelize");
 
 const DB = "smartseats";
@@ -12,7 +12,7 @@ const PASSWORD = "password";
 const HOST = "localhost";
 const DIALECT = "mysql";
 
-// 2️⃣ Connect to Database
+//  Connect to Database
 const sequelize = new Sequelize(DB, USER, PASSWORD, {
   host: HOST,
   dialect: DIALECT,
@@ -22,7 +22,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// 3️⃣ Define Models
+//  Define Models
 db.User = sequelize.define("User", {
   name: DataTypes.STRING,
   email: { type: DataTypes.STRING, unique: true },
@@ -45,7 +45,7 @@ db.Seat = sequelize.define("Seat", {
 
 db.Reservation = sequelize.define("Reservation", {});
 
-// 4️⃣ Define Associations
+//  Define Associations
 db.Event.hasMany(db.Seat);
 db.Seat.belongsTo(db.Event);
 
@@ -58,11 +58,11 @@ db.Reservation.belongsTo(db.Event);
 db.Seat.hasOne(db.Reservation);
 db.Reservation.belongsTo(db.Seat);
 
-// 5️⃣ Initialize Database with Sample Data
+//  Initialize Database with Sample Data
 async function init() {
   try {
     await sequelize.sync({ force: true }); // Drops & recreates tables
-    console.log("✅ MySQL DB synced for SmartSeats");
+    console.log(" MySQL DB synced for SmartSeats");
 
     // Sample inserts
     const user = await db.User.create({
@@ -87,11 +87,11 @@ async function init() {
 
     await seat2.update({ status: "reserved" });
 
-    console.log("🎉 Sample reservation created successfully");
+    console.log(" Sample reservation created successfully");
   } catch (err) {
-    console.error("❌ Error initializing DB:", err);
+    console.error(" Error initializing DB:", err);
   }
 }
 
-// 6️⃣ Run the Script
+//  Run the Script
 init();
