@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartseat/studentsignin.dart';
+import 'package:smartseat/lecturersignin.dart';
 
 void main() {
   runApp(const SmartSeatApp());
@@ -170,14 +171,34 @@ class _WelcomePageState extends State<WelcomePage> {
                   vertical: 8,
                 ),
                 child: ElevatedButton(
+                  // onPressed: selectedRole != null
+                  //     ? () {
+                  //         Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute<void>(
+                  //             builder: (context) => const StudentSignInPage(),
+                  //           ),
+                  //         );
+                  //       }
+                  //     : null,
                   onPressed: selectedRole != null
                       ? () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (context) => const StudentSignInPage(),
-                            ),
-                          );
+                          if (selectedRole == 'student') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (context) => const StudentSignInPage(),
+                              ),
+                            );
+                          }
+                          else if (selectedRole == 'lecturer'){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (context) => const LecturerLoginScreen(),
+                              ),
+                            );
+                          }
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
