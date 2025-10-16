@@ -1,0 +1,17 @@
+
+backend/
+├── config/
+│   └── db.config.js
+├── models/
+│   ├── index.js
+│   ├── user.js
+│   ├── event.js
+│   ├── seat.js
+│   └── reservation.js
+├── routes/
+│   ├── users.js
+│   ├── events.js
+│   ├── seats.js
+│   └── reservations.js
+├── app.js
+└── server.js
