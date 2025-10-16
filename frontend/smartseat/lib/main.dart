@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartseat/studentSignIn.dart';
+import 'package:smartseat/studentsignin.dart';
 
 void main() {
   runApp(const SmartSeatApp());
