@@ -95,3 +95,41 @@ async function init() {
 
 //  Run the Script
 init();
+const eventsTable = [
+  {
+    id: 1,
+    title: "School Concert",
+    date: new Date('2025-12-01'),
+    venue: "Main Hall",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: 2,
+    title: "Library",
+    date: new Date('2025-12-15'),
+    venue: "study Arena",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: 3,
+    title: "study pods",
+    date: new Date('2025-06-10'),
+    venue: "study Arena",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+];
+const usersTable = [ { id: 1, name: "Alice Johnson", email: "alice@example.com", createdAt: new Date(), updatedAt: new Date() },
+    { id: 2, name: "Bob Smith", email: "bob@example.com", createdAt: new Date(), updatedAt: new Date() },
+    { id: 3, name: "Carol Davis", email: "carol@example.com", createdAt: new Date(), updatedAt: new Date() }]
+
+const seatsTable = [   { id: 1, eventId: 1, row: "A", number: 1, status: "available", createdAt: new Date(), updatedAt: new Date() },
+    { id: 2, eventId: 1, row: "A", number: 2, status: "reserved", createdAt: new Date(), updatedAt: new Date() },
+    { id: 3, eventId: 1, row: "B", number: 1, status: "available", createdAt: new Date(), updatedAt: new Date() },
+    { id: 4, eventId: 2, row: "A", number: 1, status: "available", createdAt: new Date(), updatedAt: new Date() }
+  
+]
+
+const ReservationsTable = [{ id: 1, userId: 1, eventId: 1, seatId: 2, createdAt: new Date(), updatedAt: new Date() }]
