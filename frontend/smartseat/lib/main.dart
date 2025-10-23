@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smartseat/studentsignin.dart';
 import 'package:smartseat/lecturersignin.dart';
+import 'package:smartseat/adminlogin.dart';
 
 void main() {
   runApp(const SmartSeatApp());
@@ -121,7 +122,12 @@ class _WelcomePageState extends State<WelcomePage> {
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: () {
-                        setState(() => selectedRole = 'admin');
+                        Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (context) => const AdminLoginPage(),
+                              ),
+                            );
                       },
                       child: const Text(
                         "I am an admin",
@@ -171,16 +177,6 @@ class _WelcomePageState extends State<WelcomePage> {
                   vertical: 8,
                 ),
                 child: ElevatedButton(
-                  // onPressed: selectedRole != null
-                  //     ? () {
-                  //         Navigator.push(
-                  //           context,
-                  //           MaterialPageRoute<void>(
-                  //             builder: (context) => const StudentSignInPage(),
-                  //           ),
-                  //         );
-                  //       }
-                  //     : null,
                   onPressed: selectedRole != null
                       ? () {
                           if (selectedRole == 'student') {
