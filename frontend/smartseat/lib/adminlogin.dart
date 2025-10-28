@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AdminLoginPage extends StatelessWidget {
+class AdminLoginPage extends StatefulWidget {
   const AdminLoginPage({super.key});
+
+  @override
+  State<AdminLoginPage> createState() => AdminLoginPageState();
+}
+
+class AdminLoginPageState extends State<AdminLoginPage> {
+  bool rememberMe = false;
+  bool obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -117,44 +125,62 @@ class AdminLoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          "Password",
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+
+                       const SizedBox(height: 16),
+                    const Text(
+                      'Password',
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      obscureText: obscurePassword,
+                      decoration: InputDecoration(
+                        hintText: 'Enter your password',
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 14),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: "Enter your password",
-                            filled: true,
-                            fillColor: Colors.grey[100],
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none,
-                            ),
-                            suffixIcon: const Icon(Icons.visibility_outlined),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            obscurePassword
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              obscurePassword = !obscurePassword;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+
+                    // Remember me + forgot password
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: rememberMe,
+                          onChanged: (value) {
+                            setState(() {
+                              rememberMe = value ?? false;
+                            });
+                          },
+                        ),
+                        const Text('Remember me'),
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Forgot password?',
+                            style: TextStyle(color: Colors.blueAccent),
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Checkbox(value: false, onChanged: (_) {}),
-                                const Text("Remember me"),
-                              ],
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                "Forgot password?",
-                                style: TextStyle(color: Color(0xFF1976F3)),
-                              ),
-                            ),
-                          ],
-                        ),
+                      ],
+                    ),
+
                         const SizedBox(height: 12),
                         SizedBox(
                           width: double.infinity,
