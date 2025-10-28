@@ -100,6 +100,7 @@ class StudentSignInPageState extends State<StudentSignInPage> {
                         ),
                       ),
                     ),
+                    
                     const SizedBox(height: 16),
                     const Text(
                       'Password',
@@ -177,23 +178,6 @@ class StudentSignInPageState extends State<StudentSignInPage> {
                     ),
 
                     const SizedBox(height: 16),
-
-                    // Sign up text
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text("Don't have an account? "),
-                        GestureDetector(
-                          onTap: () {},
-                          child: const Text(
-                            'Sign up',
-                            style: TextStyle(
-                                color: Colors.blueAccent,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ),
