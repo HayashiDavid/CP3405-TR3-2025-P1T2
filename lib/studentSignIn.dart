@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:smartseat/services/auth_service.dart';
+import 'package:smartseat/services/web_auth_service.dart';
 import 'package:smartseat/models/user_model.dart';
 
 class StudentSignInPage extends StatefulWidget {
@@ -16,7 +18,10 @@ class StudentSignInPageState extends State<StudentSignInPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final AuthService _authService = AuthService();
+  
+  // Use different auth service based on platform
+  final _authService = kIsWeb ? null : AuthService();
+  final _webAuthService = kIsWeb ? WebAuthService() : null;
 
   @override
   void dispose() {
@@ -30,6 +35,7 @@ class StudentSignInPageState extends State<StudentSignInPage> {
     final password = _passwordController.text;
 
     print('=== LOGIN ATTEMPT ===');
+    print('Platform: ${kIsWeb ? "WEB" : "MOBILE/DESKTOP"}');
     print('Email entered: $email');
     print('Password entered: $password');
 
@@ -43,7 +49,14 @@ class StudentSignInPageState extends State<StudentSignInPage> {
     });
 
     try {
-      final user = await _authService.login(email, password);
+      User? user;
+      
+      // Use appropriate auth service based on platform
+      if (kIsWeb) {
+        user = await _webAuthService!.login(email, password);
+      } else {
+        user = await _authService!.login(email, password);
+      }
 
       print('Login result: ${user != null ? "User found" : "User not found"}');
       if (user != null) {
@@ -88,6 +101,19 @@ class StudentSignInPageState extends State<StudentSignInPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              // Platform indicator
+              if (kIsWeb)
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.orange,
+                  child: const Text(
+                    '🌐 Running in Web Mode - Using demo authentication',
+                    style: TextStyle(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              
               // Header section with blue background
               Container(
                 width: double.infinity,
