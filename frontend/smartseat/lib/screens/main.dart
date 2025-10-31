@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:smartseat/studentsignin.dart';
-import 'package:smartseat/lecturersignin.dart';
-import 'package:smartseat/adminlogin.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+import 'package:smartseat/screens/studentsignin.dart';
+import 'package:smartseat/screens/lecturersignin.dart';
+import 'package:smartseat/screens/adminlogin.dart';
+
+
+Future <void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://vqjtaaejsjovdiotacqe.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxanRhYWVqc2pvdmRpb3RhY3FlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4ODkyNTMsImV4cCI6MjA3NzQ2NTI1M30.FpbGZXWULKY4YqREvvaWy7D2BcgyO7RiFURAA6J_2js',
+  );
   runApp(const SmartSeatApp());
 }
 
@@ -18,7 +26,7 @@ class SmartSeatApp extends StatelessWidget {
       home: const WelcomePage(),
       debugShowCheckedModeBanner: false,
     );
-  }
+ }
 }
 
 class WelcomePage extends StatefulWidget {
@@ -30,6 +38,57 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   String? selectedRole;
+
+// // test
+
+// class SmartSeatApp extends StatelessWidget {
+//   const SmartSeatApp({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       title: 'Reservations',
+//       home: HomePage(),
+//     );
+//   }
+// }
+
+
+// class HomePage extends StatefulWidget {
+//   const HomePage({super.key});
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
+// class _HomePageState extends State<HomePage> {
+//   final _future = Supabase.instance.client
+//       .from('Users')
+//       .select();
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: FutureBuilder(
+//         future: _future,
+//         builder: (context, snapshot) {
+//           if (!snapshot.hasData) {
+//             return const Center(child: CircularProgressIndicator());
+//           }
+//           final reservations = snapshot.data!;
+//           return ListView.builder(
+//             itemCount: reservations.length,
+//             itemBuilder: ((context, index) {
+//               final reservation = reservations[index];
+//               return ListTile(
+//                 title: Text(reservation['name']),
+//               );
+//             }),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
+// // test ends
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -319,3 +378,5 @@ class BulletText extends StatelessWidget {
 extension StringCasing on String {
   String capitalize() => isEmpty ? this : this[0].toUpperCase() + substring(1);
 }
+
+
