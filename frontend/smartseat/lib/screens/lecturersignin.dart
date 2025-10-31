@@ -17,7 +17,7 @@ class LecturerLoginScreenState extends State<LecturerLoginScreen> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
+    // final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
       backgroundColor: Colors.white,
