@@ -1,8 +1,3 @@
-# rl_baseline.py
-# A baseline Reinforcement Learning model (Multi-Armed Bandit)
-# for the SmartSeat project (CP3405).
-# [cite_start]Objective: "Optimize real-time seat allocation policies" 
-
 import numpy as np
 import random
 
@@ -21,6 +16,7 @@ class SeatAllocationBandit:
         self.k_arms = k_arms
         self.epsilon = epsilon
         
+
         # q_values: The estimated average reward for each arm (strategy)
         self.q_values = np.zeros(k_arms)
         # n_pulls: The number of times each arm has been pulled (tried)
@@ -66,8 +62,8 @@ def run_simulation():
     
     # Define our "arms" (strategies) and their "true" success probabilities.
     # The agent does NOT know these probabilities; it must learn them.
-    [cite_start]# [cite: 80] Arm 0: "Assign Accessible Seat" (for Priya) - High success, but for specific users
-    [cite_start]# [cite: 79] Arm 1: "Assign Near Door" (for Alex) - Medium success, fast
+    # [cite: 80] Arm 0: "Assign Accessible Seat" (for Priya) - High success, but for specific users
+    # [cite: 79] Arm 1: "Assign Near Door" (for Alex) - Medium success, fast
     # Arm 2: "Assign Quiet Zone" - High success for most students
     # Arm 3: "Assign Randomly" - Low success (baseline)
     
